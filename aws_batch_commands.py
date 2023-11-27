@@ -60,11 +60,10 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             
             #TODO: check the state of the ECS Cluster.
 
-            #5. Check ec2 instance state
+            #5. TODO: Check ec2 instance state
             
             #6 Return the launch template for inspection
             launch_template_id = self.debug_aws_batch.get_aws_batch_compute_env_launch_template_id(compute_env_id)
-            ## returns the user data of the launch template
             launch_template_object = self.debug_aws_batch.get_user_data_from_launch_template(launch_template_id)            
             launch_template_userdata = self.debug_aws_batch.extract_and_decode_user_data(launch_template_object)
             print("This is the current Launch Template")
