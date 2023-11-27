@@ -3,7 +3,8 @@ from typing_extensions import Annotated
 from rich import print
 from core.client import AuthenticatedPlatformClient
 from core.debug_aws_batch import DebugAWSBatch
-from aws_batch_commands import AWSBatchCommands
+
+from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 
 
 authenticated_client = AuthenticatedPlatformClient()
