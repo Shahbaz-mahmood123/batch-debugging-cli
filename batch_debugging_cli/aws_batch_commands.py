@@ -59,7 +59,9 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             print(autoscaling_activity)
             
             #TODO: check the state of the ECS Cluster.
-
+            print("ECS Cluster details")
+            ecs_cluster = self.debug_aws_batch.get_ecs_cluster(compute_env_id)
+            print(ecs_cluster)
             #5. TODO: Check ec2 instance state
             
             #6 Return the launch template for inspection
