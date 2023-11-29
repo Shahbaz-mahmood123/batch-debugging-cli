@@ -21,15 +21,12 @@ class AWSBatchCommandsInterface():
     def debug_compute_env(self, compte_env: str) -> None:
         pass
     
-        
-
 class AWSBatchCommands(AWSBatchCommandsInterface):
 
     def __init__(self, compute_env_id: str, debug_aws_batch: DebugAWSBatch):
         self.compute_env_id = compute_env_id
         self.debug_aws_batch = debug_aws_batch
         
-    
     def debug_compute_env(self, compute_env_id: str) -> None:
         """This function will debug a given compute enviornment for a given compute enviornment ID
         Args:

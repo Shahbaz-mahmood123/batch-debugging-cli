@@ -40,13 +40,13 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 
 [[package]]
 name = "batch-debugging"
-version = "0.0.5"
+version = "0.0.6"
 description = "A SDK that helps debug batch compute enviornments in AWS, GCP and Azure and Kubernetes"
 optional = false
 python-versions = "*"
 files = [
-    {file = "batch_debugging-0.0.5-py3-none-any.whl", hash = "sha256:70736d67ca753419b31173c34d5b5bbd9fed14461447f6639a9ab2734073f314"},
-    {file = "batch_debugging-0.0.5.tar.gz", hash = "sha256:7a0b0c9027eb8ff0c4a69bfd4d4f4263819a7703163e573a64cc17d33d858819"},
+    {file = "batch_debugging-0.0.6-py3-none-any.whl", hash = "sha256:742f1e937330059478342898f5c8cb0454069f8ece5711bb2c8760c1887a2705"},
+    {file = "batch_debugging-0.0.6.tar.gz", hash = "sha256:01247f26356ae3b3b017b82add6ec5d8bfcec2f1fa4e79c134696d8a6caa4dc9"},
 ]
 
 [package.dependencies]
@@ -393,4 +393,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1865a31156db5b5c32f1fbf9e9a19347175affc6358e9e5a7568da84b45600ed"
+content-hash = "a238df3c39fd81774bde09d9e72d8abbb212ffe5b99c4e9fc5a1849367c6ef07"
