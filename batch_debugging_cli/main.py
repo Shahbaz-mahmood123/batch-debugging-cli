@@ -7,7 +7,6 @@ from core.debug_aws_batch import DebugAWSBatch
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 
 
-
 app = typer.Typer()
 
 debug_aws_batch = DebugAWSBatch()

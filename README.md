@@ -1,7 +1,3 @@
-
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/shahbaz-mahmood-660a76166/]
-
-
 <h3 align="center">batch_debugging_cli</h3>
 
   <p align="center">
