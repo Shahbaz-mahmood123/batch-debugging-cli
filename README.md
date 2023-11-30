@@ -61,17 +61,18 @@ pip install batch-debugging-cli
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To use this CLI, you will need to first export two enviornment variables.
+To use this CLI, you will need to have an AWS account, a batch compute enviornment created and the aws cli configured locally with the appropriate permissions.
 
+
+Currently only two commands are support and the CLI expects the enviornment name to match what is currently in AWS. 
+
+When supplying a compute enviornment id please pass the full name of the compute envionrment: example `TowerForge-1rVcJ5K5wnvky3zohO4EaN-head`.
+
+For Seqera platform, please declare the below two enviornment variables prior to attempting to run any of the seqera cli commands:
 ```sh 
 export PLATFORM_TOKEN=
 export PLATFORM_URL=
 ```
-
-You will also need aws credentials stored locally so the CLI can fetch the various resources from AWS. 
-
-Currently only two commands are support and the CLI expects the enviornment name to match what is currently in AWS. 
-For example `TowerForge-1rVcJ5K5wnvky3zohO4EaN-head`.
 <!-- ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
