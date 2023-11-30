@@ -40,13 +40,13 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 
 [[package]]
 name = "batch-debugging"
-version = "0.0.4"
+version = "0.0.6"
 description = "A SDK that helps debug batch compute enviornments in AWS, GCP and Azure and Kubernetes"
 optional = false
 python-versions = "*"
 files = [
-    {file = "batch_debugging-0.0.4-py3-none-any.whl", hash = "sha256:b187034bbf86bfb809236566cfe6bfb543a105362784f6ad1592caa4e9641f93"},
-    {file = "batch_debugging-0.0.4.tar.gz", hash = "sha256:03ba9835075ae7241d3d99fa945d9b959f7e4e82d43a5781f3ceb5b7bdeeefea"},
+    {file = "batch_debugging-0.0.6-py3-none-any.whl", hash = "sha256:742f1e937330059478342898f5c8cb0454069f8ece5711bb2c8760c1887a2705"},
+    {file = "batch_debugging-0.0.6.tar.gz", hash = "sha256:01247f26356ae3b3b017b82add6ec5d8bfcec2f1fa4e79c134696d8a6caa4dc9"},
 ]
 
 [package.dependencies]
@@ -56,17 +56,17 @@ httpx = "*"
 
 [[package]]
 name = "boto3"
-version = "1.33.0"
+version = "1.33.2"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "boto3-1.33.0-py3-none-any.whl", hash = "sha256:799fe8399ea132aa5aa868caf78c47ef9ed675d5ef61be97cb7131081bb8a861"},
-    {file = "boto3-1.33.0.tar.gz", hash = "sha256:ebf6d86217c37986f965dbe35a3bbd0318127d23a65737ab6486667496decb54"},
+    {file = "boto3-1.33.2-py3-none-any.whl", hash = "sha256:fc7c0dd5fa74ae0d57e11747695bdba4ad164e62dee35db15b43762c392fbd92"},
+    {file = "boto3-1.33.2.tar.gz", hash = "sha256:70626598dd6698d6da8f2854a1ae5010f175572e2a465b2aa86685c745c1013c"},
 ]
 
 [package.dependencies]
-botocore = ">=1.33.0,<1.34.0"
+botocore = ">=1.33.2,<1.34.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.8.0,<0.9.0"
 
@@ -75,13 +75,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.33.0"
+version = "1.33.2"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "botocore-1.33.0-py3-none-any.whl", hash = "sha256:ccf3d67fd046265ae73bc9862d1618c6e774a61a96beac832edb63d9a21fe1ba"},
-    {file = "botocore-1.33.0.tar.gz", hash = "sha256:e35526421fe8ee180b6aed3102929594aa51e4d60e3f29366a603707c37c0d52"},
+    {file = "botocore-1.33.2-py3-none-any.whl", hash = "sha256:5c46b7e8450efbf7ddc2a0016eee7225a5564583122e25a20ca92a29a105225c"},
+    {file = "botocore-1.33.2.tar.gz", hash = "sha256:16a30faac6e6f17961c009defb74ab1a3508b8abc58fab98e7cf96af0d91ea84"},
 ]
 
 [package.dependencies]
@@ -290,20 +290,20 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
 name = "s3transfer"
-version = "0.8.0"
+version = "0.8.1"
 description = "An Amazon S3 Transfer Manager"
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "s3transfer-0.8.0-py3-none-any.whl", hash = "sha256:baa479dc2e63e5c2ed51611b4d46cdf0295e2070d8d0b86b22f335ee5b954986"},
-    {file = "s3transfer-0.8.0.tar.gz", hash = "sha256:e8d6bd52ffd99841e3a57b34370a54841f12d3aab072af862cdcc50955288002"},
+    {file = "s3transfer-0.8.1-py3-none-any.whl", hash = "sha256:d1c52af7bceca1650d0f27728b29bb4925184aead7b55bccacf893b79a108604"},
+    {file = "s3transfer-0.8.1.tar.gz", hash = "sha256:e6cafd5643fc7b44fddfba1e5b521005675b0e07533ddad958a3554bc87d7330"},
 ]
 
 [package.dependencies]
-botocore = ">=1.32.7,<2.0a.0"
+botocore = ">=1.33.2,<2.0a.0"
 
 [package.extras]
-crt = ["botocore[crt] (>=1.32.7,<2.0a.0)"]
+crt = ["botocore[crt] (>=1.33.2,<2.0a.0)"]
 
 [[package]]
 name = "shellingham"
@@ -393,4 +393,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "6ef51992b9b368b56963eacf23deff507b635b4445de1c8b56efff373a759cf6"
+content-hash = "a238df3c39fd81774bde09d9e72d8abbb212ffe5b99c4e9fc5a1849367c6ef07"

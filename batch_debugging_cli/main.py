@@ -7,10 +7,9 @@ from core.debug_aws_batch import DebugAWSBatch
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 
 
-authenticated_client = AuthenticatedPlatformClient()
 app = typer.Typer()
 
-debug_aws_batch = DebugAWSBatch(authenticated_client)
+debug_aws_batch = DebugAWSBatch()
 
 @app.command()
 def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute enviornment name")]):

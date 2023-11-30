@@ -21,15 +21,12 @@ class AWSBatchCommandsInterface():
     def debug_compute_env(self, compte_env: str) -> None:
         pass
     
-        
-
 class AWSBatchCommands(AWSBatchCommandsInterface):
 
     def __init__(self, compute_env_id: str, debug_aws_batch: DebugAWSBatch):
         self.compute_env_id = compute_env_id
         self.debug_aws_batch = debug_aws_batch
         
-    
     def debug_compute_env(self, compute_env_id: str) -> None:
         """This function will debug a given compute enviornment for a given compute enviornment ID
         Args:
@@ -59,7 +56,9 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             print(autoscaling_activity)
             
             #TODO: check the state of the ECS Cluster.
-
+            print("ECS Cluster details")
+            ecs_cluster = self.debug_aws_batch.get_ecs_cluster(compute_env_id)
+            print(ecs_cluster)
             #5. TODO: Check ec2 instance state
             
             #6 Return the launch template for inspection
