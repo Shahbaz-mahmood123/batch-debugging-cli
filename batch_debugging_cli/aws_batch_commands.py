@@ -41,22 +41,22 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
         if self.compute_env_id:
             # 1. Check the status of the job queue
             job_queue_status = self.debug_aws_batch.get_job_queue_status(job_queue_id=self.compute_env_id)
-            print("The current status of the job queue is")
+            print("The current status of the job queue:")
             print(job_queue_status)
             
             #2. Check the current status of the compute enviornment 
             compute_env_status = self.debug_aws_batch.get_compute_env_status(compute_env_id=self.compute_env_id)
-            print("The current status of the compute enviornment is:")
+            print("The current status of the compute enviornment:")
             print(compute_env_status)
             
             #3. Check auto scaling group and check activity for that group for any errors and EC2 instance ID. 
             autoscaling_group = self.debug_aws_batch.get_autoscaling_group(compute_env_id)
             autoscaling_activity = self.debug_aws_batch.get_scaling_activities(autoscaling_group)
-            print("The activitiy within the autoscaling group")
+            print("The activitiy within the autoscaling group:")
             print(autoscaling_activity)
             
             #TODO: check the state of the ECS Cluster.
-            print("ECS Cluster details")
+            print("ECS Cluster details:")
             ecs_cluster = self.debug_aws_batch.get_ecs_cluster(compute_env_id)
             print(ecs_cluster)
             #5. TODO: Check ec2 instance state
@@ -65,7 +65,7 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             launch_template_id = self.debug_aws_batch.get_aws_batch_compute_env_launch_template_id(compute_env_id)
             launch_template_object = self.debug_aws_batch.get_user_data_from_launch_template(launch_template_id)            
             launch_template_userdata = self.debug_aws_batch.extract_and_decode_user_data(launch_template_object)
-            print("This is the current Launch Template")
+            print("This is the current Launch Template:")
             print(launch_template_userdata)
             
         else: 

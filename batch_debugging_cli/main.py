@@ -12,7 +12,7 @@ app = typer.Typer()
 debug_aws_batch = DebugAWSBatch()
 
 @app.command()
-def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute enviornment name")]):
+def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute environment name")]):
     aws_batch_commands = AWSBatchCommands(compute_env_id=compute_env_id, debug_aws_batch=debug_aws_batch)
     aws_batch_commands.debug_compute_env(compute_env_id)
 
