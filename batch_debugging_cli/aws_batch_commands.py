@@ -15,7 +15,6 @@ from rich import print
 
 from core.debug_aws_batch import DebugAWSBatch
 
-
 class AWSBatchCommandsInterface():
     
     def debug_compute_env(self, compte_env: str) -> None:
@@ -49,7 +48,19 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             print("The current status of the compute enviornment:")
             print(compute_env_status)
             
-            #3. Check auto scaling group and check activity for that group for any errors and EC2 instance ID. 
+            #3. Check for SUCEEDED, FAILED and Running jobs
+            running_jobs = self.debug_aws_batch.get_running_jobs(self.compute_env_id)
+            succeeded_jobs = self.debug_aws_batch.get_succeeded_jobs(self.compute_env_id)
+            failed_jobs = self.debug_aws_batch.get_failed_jobs(self.compute_env_id)
+            
+            print("RUNNING Jobs:")
+            print(running_jobs)
+            print("FAILED Jobs:")
+            print(failed_jobs)
+            print("SUCCEEDED Jobs:")
+            print(succeeded_jobs)
+            
+            #4. Check auto scaling group and check activity for that group for any errors and EC2 instance ID. 
             autoscaling_group = self.debug_aws_batch.get_autoscaling_group(compute_env_id)
             autoscaling_activity = self.debug_aws_batch.get_scaling_activities(autoscaling_group)
             print("The activitiy within the autoscaling group:")
