@@ -1,9 +1,9 @@
 import typer
 from typing_extensions import Annotated
 from rich import print
-from core.client import AuthenticatedPlatformClient
 from core.debug_aws_batch import DebugAWSBatch
 
+from batch_debugging_cli.gcp_batch_commands import GCPBatchCommands
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 
 
@@ -24,6 +24,12 @@ def getLaunchTemplate(compute_env_id: str):
     launch_template_userdata = debug_aws_batch.extract_and_decode_user_data(launch_template_object)
     print(launch_template_userdata)
 
+ 
+@app.command()
+def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job")]):
+    gcp_batch_commands = GCPBatchCommands()
+    batch_job = gcp_batch_commands.create_test_job(job_name=job_name)
+    print(batch_job)
  
 if __name__ == "__main__":
     app()
