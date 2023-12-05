@@ -28,8 +28,8 @@ def getLaunchTemplate(compute_env_id: str):
 @app.command()
 def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job")]):
     gcp_batch_commands = GCPBatchCommands()
-    batch_job = gcp_batch_commands.create_test_job(job_name=job_name)
-    print(batch_job)
+    batch_job = gcp_batch_commands.create_test_job(job_name)
+    
  
 if __name__ == "__main__":
     app()
