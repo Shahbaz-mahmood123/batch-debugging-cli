@@ -1,12 +1,12 @@
-<h3 align="center">batch_debugging_cli</h3>
+<h3 align="center">Batch Debugging CLI</h3>
 
-  <p align="center">
-    This is a CLI for https://github.com/Shahbaz-mahmood123/batch-debugging, it allows easier debugging of AWS Batch compute enviornments.
+<p align="center">
+    The Batch Debugging CLI is designed to streamline the debugging process for AWS Batch, GCP, Azure, and Kubernetes compute environments. Leveraging the capabilities of [batch-debugging](https://github.com/Shahbaz-mahmood123/batch-debugging).
     <br />
-    <a href="https://github.com/Shahbaz-mahmood123/batch-debugging"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Shahbaz-mahmood123/batch-debugging"><strong>Explore the documentation »</strong></a>
     <br />
     <br />
-  </p>
+</p>
 </div>
 
 
@@ -42,10 +42,9 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-A CLI that assists in debugging batch compute enviornments in AWS, GCP and Azure and Kubernetes, it currently uses https://github.com/Shahbaz-mahmood123/batch-debugging for the logic so please check there for more details around how the debugging is done. Currently only supports AWS Batch but this will be extended to include other cloud enviornment. 
+The Batch Debugging CLI is a command-line tool designed to assist in debugging batch compute environments across AWS, GCP, Azure, and Kubernetes. It currently relies on [batch-debugging](https://github.com/Shahbaz-mahmood123/batch-debugging) for its underlying logic, so refer to its documentation for detailed information on the debugging process.
 
-Additionally currently assumes your compute enviornments in AWS batch were built using Seqera platform but a more standard debugging tool will eventually be implemented.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Please note that the CLI assumes AWS Batch compute environments were built using the Seqera platform. However, a more generic debugging tool will be implemented in the future.
 
 
 ### Installation
@@ -56,34 +55,36 @@ To use this library, just install the package via pip.
 pip install batch-debugging-cli
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To use this CLI, you will need to have an AWS account, a batch compute enviornment created and the aws cli configured locally with the appropriate permissions.
+Before using the CLI, ensure you have an account in your compute provider, a valid compute enviornment and credentials to access the account(AWS, GCP, Azure)
 
+Currently, the CLI supports a few commands, and it expects the environment name to match the corresponding AWS environment. When supplying a compute environment ID, provide the full name of the environment (e.g., TowerForge-1rVcJ5K5wnvky3zohO4EaN-head).
 
-Currently only two commands are support and the CLI expects the enviornment name to match what is currently in AWS. 
+## AWS 
+For AWS please declare the region where your batch enviornmets are located. For example:
 
-When supplying a compute enviornment id please pass the full name of the compute envionrment: example `TowerForge-1rVcJ5K5wnvky3zohO4EaN-head`.
+```sh 
+export AWS_REGION=us-east-1
+```
+Additionally the below IAM permissions are required.
+
+## GCP
+
+To use the GCP commands please use the set the below enviornment variables:
+```sh
+export GCP_PROJECT_ID=test-environment
+export GCP_REGION=us-central1
+```
 
 For Seqera platform, please declare the below two enviornment variables prior to attempting to run any of the seqera cli commands:
 ```sh 
 export PLATFORM_TOKEN=
 export PLATFORM_URL=
 ```
-<!-- ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
- -->
 
  ## Contact
 
 Shahbaz Mahmood -  shahbazmahmooood@gmail.com
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
