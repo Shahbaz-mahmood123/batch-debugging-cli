@@ -6,7 +6,6 @@ from core.debug_aws_batch import DebugAWSBatch
 from batch_debugging_cli.gcp_batch_commands import GCPBatchCommands
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 
-
 app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
@@ -29,7 +28,7 @@ def getLaunchTemplate(compute_env_id: str):
     print(launch_template_userdata)
 
  
-@gcp.command()
+@gcp.command("test-job")
 def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job")]):
     gcp_batch_commands = GCPBatchCommands()
     batch_job = gcp_batch_commands.create_test_job(job_name)
