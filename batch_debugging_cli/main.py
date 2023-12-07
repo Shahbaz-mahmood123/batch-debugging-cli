@@ -9,9 +9,11 @@ from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
+azure = typer.Typer()
 
 app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
+app.add_typer(azure, name="azure")
 debug_aws_batch = DebugAWSBatch()
 
 @aws.command("debug-batch")
