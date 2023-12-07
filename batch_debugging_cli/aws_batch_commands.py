@@ -34,24 +34,24 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             dict: returns the status of a compute enviornment and any issues. 
         """
     
-        self.compute_env_id = compute_env_id
+        
         
         #TODO: add better error handling
         if self.compute_env_id:
             # 1. Check the status of the job queue
-            job_queue_status = self.debug_aws_batch.get_job_queue_status(job_queue_id=self.compute_env_id)
+            job_queue_status = self.debug_aws_batch.get_job_queue_status(job_queue_id=compute_env_id)
             print("The current status of the job queue:")
             print(job_queue_status)
             
             #2. Check the current status of the compute enviornment 
-            compute_env_status = self.debug_aws_batch.get_compute_env_status(compute_env_id=self.compute_env_id)
+            compute_env_status = self.debug_aws_batch.get_compute_env_status(compute_env_id=compute_env_id)
             print("The current status of the compute enviornment:")
             print(compute_env_status)
             
             #3. Check for SUCEEDED, FAILED and Running jobs
-            running_jobs = self.debug_aws_batch.get_running_jobs(self.compute_env_id)
-            succeeded_jobs = self.debug_aws_batch.get_succeeded_jobs(self.compute_env_id)
-            failed_jobs = self.debug_aws_batch.get_failed_jobs(self.compute_env_id)
+            running_jobs = self.debug_aws_batch.get_running_jobs(compute_env_id)
+            succeeded_jobs = self.debug_aws_batch.get_succeeded_jobs(compute_env_id)
+            failed_jobs = self.debug_aws_batch.get_failed_jobs(compute_env_id)
             
             print("RUNNING Jobs:")
             print(running_jobs)
@@ -80,7 +80,7 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             print(launch_template_userdata)
             
         else: 
-            return(f"Missing a valid Compute enviornment ID.  {self.compute_env_id} ")
+            return(f"Missing a valid Compute enviornment ID.  {compute_env_id} ")
 
     
         
