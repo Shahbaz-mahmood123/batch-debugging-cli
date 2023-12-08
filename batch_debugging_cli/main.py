@@ -10,10 +10,12 @@ app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
 azure = typer.Typer()
+seqera = typer.Typer()
 
 app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
 app.add_typer(azure, name="azure")
+app.add_typer(seqera, name="seqera")
 debug_aws_batch = DebugAWSBatch()
 
 @aws.command("debug-batch")
