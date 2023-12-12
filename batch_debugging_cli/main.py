@@ -5,7 +5,7 @@ from core.debug_aws_batch import DebugAWSBatch
 
 from batch_debugging_cli.gcp_batch_commands import GCPBatchCommands
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
-
+from batch_debugging_cli.seqera_commands import SeqeraCommands
 app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
@@ -16,8 +16,11 @@ app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
 app.add_typer(azure, name="azure")
 app.add_typer(seqera, name="seqera")
-debug_aws_batch = DebugAWSBatch()
 
+debug_aws_batch = DebugAWSBatch()
+seqera_commands = SeqeraCommands()
+
+##AWS
 @aws.command("debug-batch")
 def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute environment name")]):
     aws_batch_commands = AWSBatchCommands(compute_env_id=compute_env_id, debug_aws_batch=debug_aws_batch)
@@ -31,12 +34,17 @@ def getLaunchTemplate(compute_env_id: str):
     launch_template_userdata = debug_aws_batch.extract_and_decode_user_data(launch_template_object)
     print(launch_template_userdata)
 
- 
+##GCP
 @gcp.command("test-job")
-def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job")]):
+def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job:")]):
     gcp_batch_commands = GCPBatchCommands()
     batch_job = gcp_batch_commands.create_test_job(job_name)
-    
+
+
+##Seqera
+@seqera.command("optimize-compute")
+def optimize_compute_enviornment(compute_env_id: Annotated[str, typer.Option(prompt="Please enter the compute enviornment id:")]):
+    response = seqera_commands.optimize_compute_enviornment(compute_env_id)
  
 if __name__ == "__main__":
     app()
