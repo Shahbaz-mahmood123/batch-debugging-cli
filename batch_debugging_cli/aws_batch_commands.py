@@ -12,6 +12,7 @@ Steps to debug batch env in AWS Batch:
 import typer
 from typing_extensions import Annotated
 from rich import print
+from datetime import datetime
 
 from core.debug_aws_batch import DebugAWSBatch
 
@@ -80,7 +81,7 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             #7 Cloudwatch
             cloud_watch_logs = self.debug_aws_batch.get_recent_forge_cloudwatch_logs(autoscaling_group_activity=autoscaling_activity)
             for events in cloud_watch_logs.events:
-                print(f"Time {events.timestamp}, Log event: {events.message}")
+                print(f"Time {datetime.fromtimestamp(events.timestamp / 1000.0)}, Log event: {events.message}")
                 
         else: 
             return(f"Missing a valid Compute enviornment ID.  {compute_env_id} ")
