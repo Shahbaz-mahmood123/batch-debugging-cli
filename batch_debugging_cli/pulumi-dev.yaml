@@ -1,0 +1,4 @@
+project_id: 
+stack: dev1
+location: us-east1
+name: shahbaz-pulumi-test
