@@ -34,8 +34,6 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             dict: returns the status of a compute enviornment and any issues. 
         """
     
-        
-        
         #TODO: add better error handling
         if self.compute_env_id:
             # 1. Check the status of the job queue
@@ -79,6 +77,11 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             print("This is the current Launch Template:")
             print(launch_template_userdata)
             
+            #7 Cloudwatch
+            cloud_watch_logs = self.debug_aws_batch.get_recent_forge_cloudwatch_logs(autoscaling_group_activity=autoscaling_activity)
+            for events in cloud_watch_logs.events:
+                print(f"Time {events.timestamp}, Log event: {events.message}")
+                
         else: 
             return(f"Missing a valid Compute enviornment ID.  {compute_env_id} ")
 
