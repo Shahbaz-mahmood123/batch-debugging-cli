@@ -6,16 +6,21 @@ from core.debug_aws_batch import DebugAWSBatch
 from batch_debugging_cli.gcp_batch_commands import GCPBatchCommands
 from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 from batch_debugging_cli.seqera_commands import SeqeraCommands
+from batch_debugging_cli.pulumi_commands import PulumiCommands
+
 app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
 azure = typer.Typer()
 seqera = typer.Typer()
+pulumi = typer.Typer()
+
 
 app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
 app.add_typer(azure, name="azure")
 app.add_typer(seqera, name="seqera")
+app.add_typer(pulumi,name = "pulumi" )
 
 debug_aws_batch = DebugAWSBatch()
 seqera_commands = SeqeraCommands()
@@ -40,6 +45,18 @@ def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a
     gcp_batch_commands = GCPBatchCommands()
     batch_job = gcp_batch_commands.create_test_job(job_name)
 
+
+##Pulumi
+@pulumi.command("up")
+def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+    pulumi_commands = PulumiCommands(config_file)
+    pulumi_commands.pulumi_up()
+
+@pulumi.command("destroy")
+def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+    pulumi_commands = PulumiCommands(config_file)
+    pulumi_commands.pulumi_destroy()
+    
 
 ##Seqera
 @seqera.command("optimize-compute")
