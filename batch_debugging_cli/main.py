@@ -15,7 +15,6 @@ azure = typer.Typer()
 seqera = typer.Typer()
 pulumi = typer.Typer()
 
-
 app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
 app.add_typer(azure, name="azure")
@@ -31,7 +30,6 @@ def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a 
     aws_batch_commands = AWSBatchCommands(compute_env_id=compute_env_id, debug_aws_batch=debug_aws_batch)
     aws_batch_commands.debug_compute_env(compute_env_id)
 
-
 @aws.command("get-lt")
 def getLaunchTemplate(compute_env_id: str):
     launch_template_id = debug_aws_batch.get_aws_batch_compute_env_launch_template_id(compute_env_id)
@@ -45,7 +43,6 @@ def gcp_create_job(job_name: Annotated[str, typer.Option(prompt="Please insert a
     gcp_batch_commands = GCPBatchCommands()
     batch_job = gcp_batch_commands.create_test_job(job_name)
 
-
 ##Pulumi
 @pulumi.command("up")
 def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
@@ -56,7 +53,16 @@ def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAM
 def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
     pulumi_commands = PulumiCommands(config_file)
     pulumi_commands.pulumi_destroy()
+
+@pulumi.command("preview")
+def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+    pulumi_commands = PulumiCommands(config_file)
+    pulumi_commands.pulumi_preview()
     
+@pulumi.command("cancel")
+def cancel(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+    pulumi_commands = PulumiCommands(config_file)
+    pulumi_commands.pulumi_cancel()
 
 ##Seqera
 @seqera.command("optimize-compute")

@@ -34,7 +34,7 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
         Returns:
             dict: returns the status of a compute enviornment and any issues. 
         """
-    
+         
         #TODO: add better error handling
         if self.compute_env_id:
             # 1. Check the status of the job queue
