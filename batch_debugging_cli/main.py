@@ -8,6 +8,8 @@ from batch_debugging_cli.aws_batch_commands import AWSBatchCommands
 from batch_debugging_cli.seqera_commands import SeqeraCommands
 from batch_debugging_cli.pulumi_commands import PulumiCommands
 
+
+## TODO: Check if I need add to the below pretty_exceptions_enable=False, add_completion=True
 app = typer.Typer()
 aws = typer.Typer()
 gcp = typer.Typer()
