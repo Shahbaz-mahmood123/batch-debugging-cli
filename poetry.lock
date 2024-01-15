@@ -55,23 +55,26 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 
 [[package]]
 name = "batch-debugging"
-version = "0.1.2"
+version = "0.1.4"
 description = "A SDK that helps debug batch compute enviornments in AWS, GCP and Azure and Kubernetes"
 optional = false
 python-versions = "*"
 files = [
-    {file = "batch_debugging-0.1.2-py3-none-any.whl", hash = "sha256:b4a864e36faeb45b02571843dc8bae17c5dbdc786b547cb5235993ff4d200536"},
-    {file = "batch_debugging-0.1.2.tar.gz", hash = "sha256:44922a30e38b71a1d5805be49420fac66e8ab497507e07d1f1b1fc1bde23d147"},
+    {file = "batch_debugging-0.1.4-py3-none-any.whl", hash = "sha256:e16a68e72b8252161d69426a4f9a9e3dbd2b7e134a4e7dc02f9d1f5b46226edc"},
+    {file = "batch_debugging-0.1.4.tar.gz", hash = "sha256:3747258f55f3aaa3c3dcf02467272f9f4a8f79ae84d2c62e50846ef901ee7c9f"},
 ]
 
 [package.dependencies]
 attrs = "*"
 boto3 = "*"
 google-cloud-batch = "*"
+google-cloud-core = "*"
 google-cloud-storage = "*"
 httpx = "*"
 pulumi = "*"
+pulumi-command = "*"
 pulumi-gcp = "*"
+PyYAML = "*"
 
 [[package]]
 name = "boto3"
@@ -752,6 +755,22 @@ semver = ">=2.13,<3.0"
 six = ">=1.12,<2.0"
 
 [[package]]
+name = "pulumi-command"
+version = "0.9.2"
+description = "The Pulumi Command Provider enables you to execute commands and scripts either locally or remotely as part of the Pulumi resource model."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pulumi_command-0.9.2-py3-none-any.whl", hash = "sha256:7fb72f1e2fa0f63912183361173416e0b1a72e22b1198504fef794f9d60b2571"},
+    {file = "pulumi_command-0.9.2.tar.gz", hash = "sha256:34c265e6ce327ddf950420cff07a313b67e111ad03d1f371ad451a3cf1b7ea0c"},
+]
+
+[package.dependencies]
+parver = ">=0.2.1"
+pulumi = ">=3.0.0,<4.0.0"
+semver = ">=2.8.1"
+
+[[package]]
 name = "pulumi-gcp"
 version = "7.3.1"
 description = "A Pulumi package for creating and managing Google Cloud Platform resources."
@@ -1049,4 +1068,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "39a1df1a0a08b7859db8ba5f803deaebebefd7e22b12791916c1110c3526e20c"
+content-hash = "f23aec1f3437cd2795b7b496a0af3f8b32ec0153d664e8c9f3f6714914e8b19f"

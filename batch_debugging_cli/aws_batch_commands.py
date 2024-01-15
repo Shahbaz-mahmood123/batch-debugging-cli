@@ -9,10 +9,12 @@ Steps to debug batch env in AWS Batch:
 7. Check cloud trail
 8. Check ECS cluster.
 """
+from datetime import datetime
+import tempfile
 import typer
 from typing_extensions import Annotated
 from rich import print
-from datetime import datetime
+
 
 from core.debug_aws_batch import DebugAWSBatch
 
@@ -26,7 +28,14 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
     def __init__(self, compute_env_id: str, debug_aws_batch: DebugAWSBatch):
         self.compute_env_id = compute_env_id
         self.debug_aws_batch = debug_aws_batch
+        self.temp_file = None
         
+        
+    def create_temp_file(self):
+        # Create a temporary file
+        self.temp_file = tempfile.NamedTemporaryFile(mode="w+", delete=False)
+        self.temp_file.write(self.variable_content)
+    
     def debug_compute_env(self, compute_env_id: str) -> None:
         """This function will debug a given compute enviornment for a given compute enviornment ID
         Args:
@@ -80,6 +89,8 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
             
             #7 Cloudwatch
             cloud_watch_logs = self.debug_aws_batch.get_recent_forge_cloudwatch_logs(autoscaling_group_activity=autoscaling_activity)
+            if cloud_watch_logs is None:
+                print("No logs found in Cloudwatch. Your log retention policy may have cleaned the logs up")
             for events in cloud_watch_logs.events:
                 print(f"Time {datetime.fromtimestamp(events.timestamp / 1000.0)}, Log event: {events.message}")
                 

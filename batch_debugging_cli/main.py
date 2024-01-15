@@ -65,6 +65,11 @@ def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of th
 def cancel(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
     pulumi_commands = PulumiCommands(config_file)
     pulumi_commands.pulumi_cancel()
+   
+@pulumi.command("destroy-stack")   
+def destroy_stack(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+    pulumi_commands = PulumiCommands(config_file)
+    pulumi_commands.destroy_stack()
 
 ##Seqera
 @seqera.command("optimize-compute")
