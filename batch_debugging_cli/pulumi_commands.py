@@ -32,15 +32,21 @@ class PulumiCommands(PulumiCommandsInterface):
             raise FileNotFoundError(f"File not found: {self.config_file}")
         
         #self.select_gcp_type()
-        #TODO If for calling method based on whether its gcp, aws or azure.
+        #TODO Dynamically select which type of deployment it will be, GKE, GCP compute, azure, aks etc
         
         self.config = PulumiGCPConfig(self.config_file) 
+        
+        current_working_directory = os.getcwd()
+        
         self.infra_config = PulumiGCP(project_id=self.config.project_id, 
                                  location=self.config.location, name=self.config.resource_name, region=self.config.region, 
-                                 zone=self.config.zone, instance_name=self.config.instance_name)
-
+                                 zone=self.config.zone, instance_name=self.config.instance_name,tower_env_secret=self.config.tower_env_secret,
+                                 tower_yaml_secret=self.config.tower_yaml_secret, harbor_creds=self.config.harbor_creds,
+                                groundswell_secret=self.config.groundswell_secret, source_ranges=self.config.source_ranges, 
+                                tags=self.config.tags, source_tags=self.config.source_tags)
+                       
         self.execution = PulumiExecution(project_id=self.config.project_id,
-                                    stack_name=self.config.stack_name,pulumi_gcp=self.infra_config, work_dir=".")
+                                    stack_name=self.config.stack_name,pulumi_program=self.infra_config, work_dir=current_working_directory)
     
     def pulumi_up(self) -> None:
         result = self.execution.execute()
@@ -56,6 +62,9 @@ class PulumiCommands(PulumiCommandsInterface):
     
     def pulumi_refresh(self):
         refresh = self.execution.refresh()
+        
+    def destroy_stack(self):
+        refresh = self.execution.destroy_stack()
         
     def select_gcp_type(self):
         
