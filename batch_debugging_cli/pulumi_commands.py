@@ -10,7 +10,7 @@ from infrastructure.pulumi_config import PulumiGCPConfig, PulumiConfig
 pulumi = typer.Typer()
 
 class PulumiCommands():
-    ##Pulumi
+    
     @pulumi.command("up")
     def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
