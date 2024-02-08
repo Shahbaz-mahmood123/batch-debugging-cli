@@ -4,13 +4,22 @@ from rich import print
 
 from core.compute_envs import SeqeraComputeEnvsWrapper
 
-class SeqeraCommandsInterface():
+class SeqeraInterface():
 
     def optimize_compute_enviornment(self, compute_env_id: str):
         pass
+    
+seqera = typer.Typer()
 
+class SeqeraCommands():
+    
+    @staticmethod
+    @seqera.command("optimize-compute")
+    def optimize_compute_enviornment(compute_env_id: Annotated[str, typer.Option(prompt="Please enter the compute enviornment id:")]):
+        seqera = Seqera()
+        response = seqera.optimize_compute_enviornment(compute_env_id=compute_env_id)
 
-class SeqeraCommands(SeqeraCommandsInterface):
+class Seqera(SeqeraInterface):
     
     def __init__(self, seqera_compute_env_wrapper = None) -> None:
         self.seqera_compute_env_wrapper = SeqeraComputeEnvsWrapper()

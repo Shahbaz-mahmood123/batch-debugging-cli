@@ -22,8 +22,29 @@ class AWSBatchCommandsInterface():
     
     def debug_compute_env(self, compte_env: str) -> None:
         pass
-    
-class AWSBatchCommands(AWSBatchCommandsInterface):
+
+
+aws = typer.Typer()   
+
+class AWSCommands():
+
+    def __init__(self) -> None:
+        pass
+        
+    @staticmethod
+    @aws.command("debug-batch")
+    def debugCE(compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute environment name")]):
+        aws_batch_commands = AWSBatch(compute_env_id=compute_env_id, debug_aws_batch=DebugAWSBatch())
+        aws_batch_commands.debug_compute_env(compute_env_id)
+        
+    # @aws.command("get-lt")
+    # def getLaunchTemplate(compute_env_id: str):
+    #     launch_template_id = debug_aws_batch.get_aws_batch_compute_env_launch_template_id(compute_env_id)
+    #     launch_template_object = debug_aws_batch.get_user_data_from_launch_template(launch_template_id)            
+    #     launch_template_userdata = debug_aws_batch.extract_and_decode_user_data(launch_template_object)
+    #     print(launch_template_userdata)
+
+class AWSBatch(AWSBatchCommandsInterface):
 
     def __init__(self, compute_env_id: str, debug_aws_batch: DebugAWSBatch):
         self.compute_env_id = compute_env_id
@@ -36,7 +57,9 @@ class AWSBatchCommands(AWSBatchCommandsInterface):
         self.temp_file = tempfile.NamedTemporaryFile(mode="w+", delete=False)
         self.temp_file.write(self.variable_content)
     
-    def debug_compute_env(self, compute_env_id: str) -> None:
+ 
+    def debug_compute_env(self, compute_env_id: Annotated[str, typer.Option(prompt="Please insert a valid compute environment name")]) -> None:
+        
         """This function will debug a given compute enviornment for a given compute enviornment ID
         Args:
             compte_env (str): The ID of your current compute enviornment. 

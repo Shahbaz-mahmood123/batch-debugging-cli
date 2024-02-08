@@ -1,10 +1,48 @@
 import os
+from typing_extensions import Annotated
+import typer
 
 from infrastructure.pulumi import PulumiExecution
 from infrastructure.gcp_compute_engine import PulumiGCP
 from infrastructure.pulumi_config import PulumiGCPConfig, PulumiConfig
 
-class PulumiCommandsInterface():
+
+pulumi = typer.Typer()
+
+class PulumiCommands():
+    
+    @staticmethod
+    @pulumi.command("up")
+    def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+        pulumi_commands = Pulumi(config_file)
+        pulumi_commands.pulumi_up()
+
+    @staticmethod
+    @pulumi.command("destroy")
+    def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+        pulumi_commands = Pulumi(config_file)
+        pulumi_commands.pulumi_destroy()
+
+    @staticmethod
+    @pulumi.command("preview")
+    def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+        pulumi_commands = Pulumi(config_file)
+        pulumi_commands.pulumi_preview()
+    
+    @staticmethod
+    @pulumi.command("cancel")
+    def cancel(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+        pulumi_commands = Pulumi(config_file)
+        pulumi_commands.pulumi_cancel()
+    
+    @staticmethod
+    @pulumi.command("destroy-stack")   
+    def destroy_stack(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
+        pulumi_commands = Pulumi(config_file)
+        pulumi_commands.destroy_stack()
+
+
+class PulumiCommands():
     def pulumi_up(self) -> None:
         pass
     
@@ -22,8 +60,8 @@ class PulumiCommandsInterface():
     
     def select_gcp_type(self):
         pass
-    
-class PulumiCommands(PulumiCommandsInterface):
+
+class Pulumi(PulumiCommands):
     
     def __init__(self, config_file: str) -> None:
         self.config_file = config_file
@@ -47,19 +85,19 @@ class PulumiCommands(PulumiCommandsInterface):
                        
         self.execution = PulumiExecution(project_id=self.config.project_id,
                                     stack_name=self.config.stack_name,pulumi_program=self.infra_config, work_dir=current_working_directory)
-    
+
     def pulumi_up(self) -> None:
         result = self.execution.execute()
-    
+        
     def pulumi_destroy(self):
         destroy = self.execution.destroy()
-    
+        
     def pulumi_preview(self):
         preview = self.execution.preview()
-    
+        
     def pulumi_cancel(self):
         cancel = self.execution.cancel()
-    
+        
     def pulumi_refresh(self):
         refresh = self.execution.refresh()
         
