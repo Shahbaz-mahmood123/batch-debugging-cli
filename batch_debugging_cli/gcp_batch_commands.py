@@ -10,10 +10,13 @@ class GCPBatchCommandsInterface():
     def create_test_job(self, job_name: str) -> None:
         pass
     
+gcp = typer.Typer()
 
 class GCPBatchCommands():
-             
-    def create_test_job(self, job_name: str) -> None:
+    
+    @gcp.command("test-job")
+    @staticmethod
+    def create_test_job(job_name: Annotated[str, typer.Option(prompt="Please insert a name for the batch job:")]) -> None:
         gcp_batch = GCPBatch()
         test_job = gcp_batch.create_test_job(job_name)
         print(test_job)

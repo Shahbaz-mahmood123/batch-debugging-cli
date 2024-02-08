@@ -1,4 +1,5 @@
 import os
+import typer
 
 from infrastructure.pulumi import PulumiExecution
 from infrastructure.gcp_compute_engine import PulumiGCP
@@ -22,7 +23,7 @@ class PulumiCommandsInterface():
     
     def select_gcp_type(self):
         pass
-    
+
 class PulumiCommands(PulumiCommandsInterface):
     
     def __init__(self, config_file: str) -> None:
@@ -47,19 +48,19 @@ class PulumiCommands(PulumiCommandsInterface):
                        
         self.execution = PulumiExecution(project_id=self.config.project_id,
                                     stack_name=self.config.stack_name,pulumi_program=self.infra_config, work_dir=current_working_directory)
-    
+
     def pulumi_up(self) -> None:
         result = self.execution.execute()
-    
+        
     def pulumi_destroy(self):
         destroy = self.execution.destroy()
-    
+        
     def pulumi_preview(self):
         preview = self.execution.preview()
-    
+        
     def pulumi_cancel(self):
         cancel = self.execution.cancel()
-    
+        
     def pulumi_refresh(self):
         refresh = self.execution.refresh()
         
