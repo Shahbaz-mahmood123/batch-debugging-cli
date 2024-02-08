@@ -11,26 +11,31 @@ pulumi = typer.Typer()
 
 class PulumiCommands():
     
+    @staticmethod
     @pulumi.command("up")
     def up(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
         pulumi_commands.pulumi_up()
 
+    @staticmethod
     @pulumi.command("destroy")
     def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
         pulumi_commands.pulumi_destroy()
 
+    @staticmethod
     @pulumi.command("preview")
     def destroy(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
         pulumi_commands.pulumi_preview()
-        
+    
+    @staticmethod
     @pulumi.command("cancel")
     def cancel(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
         pulumi_commands.pulumi_cancel()
     
+    @staticmethod
     @pulumi.command("destroy-stack")   
     def destroy_stack(config_file:  Annotated[str, typer.Option(prompt="The location of the YAML file")] ):
         pulumi_commands = Pulumi(config_file)
