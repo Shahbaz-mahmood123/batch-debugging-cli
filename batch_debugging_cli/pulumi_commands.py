@@ -3,8 +3,8 @@ from typing_extensions import Annotated
 import typer
 
 from infrastructure.pulumi import PulumiExecution
-from infrastructure.gcp_compute_engine import PulumiGCP
-from infrastructure.pulumi_config import PulumiGCPConfig, PulumiConfig
+from infrastructure.minimal_gcp_compute_engine import MinimalPulumiGCP
+from infrastructure.pulumi_config import MinimalPulumiGCPConfig, PulumiConfig
 
 
 pulumi = typer.Typer()
@@ -42,7 +42,7 @@ class PulumiCommands():
         pulumi_commands.destroy_stack()
 
 
-class PulumiCommands():
+class PulumiInterface():
     def pulumi_up(self) -> None:
         pass
     
@@ -61,7 +61,7 @@ class PulumiCommands():
     def select_gcp_type(self):
         pass
 
-class Pulumi(PulumiCommands):
+class Pulumi(PulumiInterface):
     
     def __init__(self, config_file: str) -> None:
         self.config_file = config_file
@@ -72,19 +72,18 @@ class Pulumi(PulumiCommands):
         #self.select_gcp_type()
         #TODO Dynamically select which type of deployment it will be, GKE, GCP compute, azure, aks etc
         
-        self.config = PulumiGCPConfig(self.config_file) 
+        self.config = MinimalPulumiGCPConfig(self.config_file) 
         
         current_working_directory = os.getcwd()
         
-        self.infra_config = PulumiGCP(project_id=self.config.project_id, 
-                                 location=self.config.location, name=self.config.resource_name, region=self.config.region, 
-                                 zone=self.config.zone, instance_name=self.config.instance_name,tower_env_secret=self.config.tower_env_secret,
-                                 tower_yaml_secret=self.config.tower_yaml_secret, harbor_creds=self.config.harbor_creds,
-                                groundswell_secret=self.config.groundswell_secret, source_ranges=self.config.source_ranges, 
-                                tags=self.config.tags, source_tags=self.config.source_tags)
+        self.infra_config = MinimalPulumiGCP(project_id=self.config.project_id, location=self.config.location, name=self.config.resource_name, region=self.config.region,
+                                        zone=self.config.zone, instance_name=self.config.instance_name,tower_env_secret=self.config.tower_env_secret, 
+                                        tower_yaml_secret=self.config.tower_yaml_secret, harbor_creds=self.config.harbor_creds,
+                                        groundswell_secret=self.config.groundswell_secret, source_ranges=self.config.source_ranges, 
+                                        tags=self.config.tags, source_tags=self.config.source_tags)
                        
         self.execution = PulumiExecution(project_id=self.config.project_id,
-                                    stack_name=self.config.stack_name,pulumi_program=self.infra_config, work_dir=current_working_directory)
+                                    stack_name=self.config.stack_name,infra=self.infra_config, work_dir=current_working_directory)
 
     def pulumi_up(self) -> None:
         result = self.execution.execute()
@@ -107,8 +106,8 @@ class Pulumi(PulumiCommands):
     def select_gcp_type(self):
         
         if self.config.provider == 'minimal':
-            PulumiGCPConfig(self.config_file) 
-            self.infra_config = PulumiGCP(project_id=self.config.project_id, 
+            MinimalPulumiGCPConfig(self.config_file) 
+            self.infra_config = MinimalPulumiGCP(project_id=self.config.project_id, 
                                  location=self.config.location, name=self.config.resource_name, region=self.config.region, 
                                  zone=self.config.zone, instance_name=self.config.instance_name)
         
