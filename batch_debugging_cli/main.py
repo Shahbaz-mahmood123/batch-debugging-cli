@@ -1,5 +1,6 @@
+from typing import Optional
 import typer
-from typing_extensions import Annotated
+
 from rich import print
 from core.debug_aws_batch import DebugAWSBatch
 
@@ -14,13 +15,16 @@ app = typer.Typer()
 azure = typer.Typer()
 
 
+@app.command("version")
+def version():
+    __version__ = '0.0.8'
+    print(f"CLI version: {__version__}")
+            
 app.add_typer(gcp, name="gcp")
 app.add_typer(aws, name="aws")
 app.add_typer(azure, name="azure")
 app.add_typer(seqera, name="seqera")
 app.add_typer(pulumi,name = "pulumi" )
-
-
  
 if __name__ == "__main__":
     app()
