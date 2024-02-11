@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "batch-debugging-cli"
-version = "0.0.8"
+version = "0.0.9"
 description = "A CLI that makes it easier to debug issues with batch compute enviornments in AWS, future plans to support GCP, Azure and kubernetes"
 authors = ["shahbaz mahmood <shahbaz.mahmooood@gmail.com>"]
 readme = "README.md"
