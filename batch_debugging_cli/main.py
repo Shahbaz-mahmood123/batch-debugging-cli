@@ -17,7 +17,7 @@ azure = typer.Typer()
 
 @app.command("version")
 def version():
-    __cli_version__ = '0.0.8'
+    __cli_version__ = '0.0.9'
     print(f"CLI version: {__cli_version__}")
             
 app.add_typer(gcp, name="gcp")
