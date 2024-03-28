@@ -23,7 +23,6 @@ class AWSBatchCommandsInterface():
     def debug_compute_env(self, compte_env: str) -> None:
         pass
 
-
 aws = typer.Typer()   
 
 class AWSCommands():

@@ -6,8 +6,12 @@ from infrastructure.pulumi import PulumiExecution
 from infrastructure.minimal_gcp_compute_engine import MinimalPulumiGCP
 from infrastructure.pulumi_config import MinimalPulumiGCPConfig, PulumiConfig
 
-
+#messing with adding subcommands.
 pulumi = typer.Typer()
+# gcp = typer.Typer()
+# minimal = typer.Typer()
+# pulumi.add_typer(gcp, name ="gcp")
+# gcp.add_typer(minimal,name ="minimal")
 
 class PulumiCommands():
     
